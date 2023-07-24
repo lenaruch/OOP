@@ -1,21 +1,26 @@
 package family_tree;
 
+import family_tree.family_tree.FamilyTree;
+import family_tree.human.Gender;
+import family_tree.human.Human;
+
 import java.time.LocalDate;
 
 public class Main {
     public static void main(String[] args) {
+
         FamilyTree tree = testTree();
         System.out.println(tree);
+
     }
 
     static FamilyTree testTree(){
         FamilyTree tree = new FamilyTree();
 
         Human valera = new Human("Валера", Gender.Male, LocalDate.of(1977,4,12));
-        tree.add(valera);
         Human elena = new Human("Елена", Gender.Female, LocalDate.of(1968,8,27));
+        tree.add(valera);
         tree.add(elena);
-
         tree.setWedding(valera.getId(), elena.getId());
 
         Human egor = new Human("Егор", Gender.Male, LocalDate.of(1994,8,2),valera,elena);

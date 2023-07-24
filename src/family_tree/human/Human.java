@@ -1,4 +1,4 @@
-package family_tree;
+package family_tree.human;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -8,9 +8,9 @@ import java.util.List;
 public class Human {
     private long id;
     private String name;
+    private Gender gender;
     private LocalDate birthDay;
     private LocalDate deathDay;
-    private Gender gender;
     private List<Human> parents;
     private List<Human> children;
     private Human spouse;
@@ -18,11 +18,11 @@ public class Human {
     // Конструктор со всеми агрументами
     public Human(String name, Gender gender, LocalDate birthDay, LocalDate deathDay,
                  Human father, Human mother) {
-        long id = -1;
+        id = -1;
         this.name = name;
+        this.gender = gender;
         this.birthDay = birthDay;
         this.deathDay = deathDay;
-        this.gender = gender;
         parents = new ArrayList<>();
         if (father != null){
             parents.add(father);
@@ -96,34 +96,32 @@ public class Human {
         return diff.getYears();
     }
 
-    // Метод получения пола
-    public Gender getGender(){return gender;}
-
-    public String getName(){return name;}
-    public long getId(){return id;}
-    public void setId(long id){this.id = id;}
-    public void setSpouse(Human spouse){this.spouse=spouse;}
-    public Human getSpouse(){return spouse;}
-    public LocalDate getBirthDay(){return birthDay;}
-    public LocalDate getDeathDay(){return deathDay;}
-    public List<Human> getParents() {return parents;}
-    public List<Human> getChildren()  {return children;}
-    public void setBirthDay(LocalDate birthDay){this.birthDay=birthDay;}
-    public void setDeathDay(LocalDate deathDay){this.deathDay=deathDay;}
+    public void setSpouse(Human spouse) { this.spouse = spouse; } // Задаем супруга
+    public Human getSpouse() { return spouse; } // Метод получения супруга
+    public String getName() { return name; } // Метод получения Имени
+    public long getId() { return id; } // Метод получения ID
+    public void setId(long id) { this.id = id; }
+    public LocalDate getBirthDay() { return birthDay; }
+    public LocalDate getDeathDay() { return deathDay; }
+    public List<Human> getParents() { return parents; }
+    public List<Human> getChildren()  { return children; }
+    public void setBirthDay(LocalDate birthDay) { this.birthDay = birthDay; }
+    public void setDeathDay(LocalDate deathDay) { this.deathDay = deathDay; }
+    public Gender getGender() { return gender; } // Метод получения пола
 
     @Override
     public String toString() {
         return getInfo();
     }
 
-    private String getInfo() {
+    public String getInfo() {
         StringBuilder sb = new StringBuilder();
         sb.append("id:");
         sb.append(id);
         sb.append(", имя:");
         sb.append(name);
         sb.append(", пол:");
-        sb.append(gender);
+        sb.append(getGender());
         sb.append(", возраст:");
         sb.append(getAge());
         sb.append(", ");
@@ -137,7 +135,7 @@ public class Human {
         return sb.toString();
     }
 
-    private String getSpouseInfo() {
+    public String getSpouseInfo() {
         String res = "супруг(а): ";
         if (spouse == null){
             res += "нет";
@@ -147,7 +145,7 @@ public class Human {
         return res;
     }
 
-    private String getFatherInfo() {
+    public String getFatherInfo() {
         String res = "отец: ";
         Human father = getFather();
         if (father != null){
@@ -158,18 +156,18 @@ public class Human {
         return res;
     }
 
-    private String getMotherInfo() {
+    public String getMotherInfo() {
         String res = "мать: ";
         Human mother = getMother();
         if (mother != null){
             res += mother.getName();
         } else {
-            res += "неизвестно";
+            res += "неизвестна";
         }
         return res;
     }
 
-    private String getChildrenInfo() {
+    public String getChildrenInfo() {
         StringBuilder res = new StringBuilder();
         res.append("дети: ");
         if (children.size() != 0){
@@ -186,7 +184,7 @@ public class Human {
 
     @Override
     public boolean equals(Object obj) {
-        if (this==obj){
+        if (this == obj){
             return true;
         }
         if (!(obj instanceof Human)){
