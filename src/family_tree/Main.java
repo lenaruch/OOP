@@ -1,6 +1,7 @@
 package family_tree;
 
 import family_tree.family_tree.FamilyTree;
+import family_tree.family_tree.FamilyTreeIterator;
 import family_tree.human.Gender;
 import family_tree.human.Human;
 import family_tree.writer.FileHandler;
