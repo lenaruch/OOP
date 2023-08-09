@@ -1,15 +1,14 @@
-package study_group;
+package study_group.group;
 
-import study_group.service.Service;
 import study_group.student.Student;
+import study_group.student.comparators.StudentComparatorByAge;
+import study_group.student.comparators.StudentComparatorByName;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 public class StudyGroup implements Iterable<Student>{
-
-    Service servise = new Service();
     private List<Student> studentList;
 
     public StudyGroup() {
@@ -22,20 +21,14 @@ public class StudyGroup implements Iterable<Student>{
 
     @Override
     public Iterator<Student> iterator() {
-        return new StudentIterator();
+        return new StudentIterator(studentList);
     }
 
-    class StudentIterator implements Iterator<Student>{
-        private int index;
+    public void sortByName() {
+        studentList.sort(new StudentComparatorByName());
+    }
 
-        @Override
-        public boolean hasNext() {
-            return studentList.size() > index;
-        }
-
-        @Override
-        public Student next() {
-            return studentList.get(index++);
-        }
+    public void sortByAge() {
+        studentList.sort(new StudentComparatorByAge());
     }
 }

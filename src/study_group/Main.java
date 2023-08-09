@@ -1,14 +1,20 @@
 package study_group;
 
+import study_group.service.Service;
+
 public class Main {
     public static void main(String[] args) {
-        Servise servise = new Servise();
+        Service service = new Service();
 
-        servise.addStudent("Паша", 20);
-        servise.addStudent("Валера", 24);
-        servise.addStudent("Игорь", 22);
-        servise.addStudent("Винеамин", 23);
+        service.addStudent("Паша", 18);
+        service.addStudent("Маша", 20);
+        service.addStudent("Саша", 17);
+        service.addStudent("Даша", 19);
 
-        System.out.println();
+        System.out.println(service.getStudentsInfo());
+        service.sortByName();
+        System.out.println(service.getStudentsInfo());
+        service.sortByAge();
+        System.out.println(service.getStudentsInfo());
     }
 }
