@@ -1,26 +1,21 @@
-package family_tree.family_tree;
+package model.familyTree;
 
 import java.time.LocalDate;
-import java.util.HashMap;
+import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 public interface TreeNode<T> {
     void setId(long id);
     long getId();
     T getFather();
     T getMother();
-    boolean addChild(T Human);
-    boolean addParent(T Human);
+    boolean addChild(T human);
+    boolean addParent(T human);
     String getName();
-    LocalDate getDeathDay();
-    LocalDate getBirthDay();
+    LocalDate getDeathDate();
+    LocalDate getBirthDate();
     List<T> getParents();
     List<T> getChildren();
     T getSpouse();
-    void setSpouse(T Human);
-
-
-
-
+    void setSpouse(T human);
 }
